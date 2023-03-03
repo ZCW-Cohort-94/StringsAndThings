@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.util.Arrays;
 
 /**
  * @author tariq
@@ -15,7 +16,14 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        int counter = 0;
+        String[] list = input.split(" "); //Maybe change this out to a StringBuilder
+        for (int i = 0;i < list.length;i++){
+            if ((list[i].charAt(list[i].length()-1) == 'y') || ((list[i].charAt(list[i].length()-1) == 'z'))){
+                counter++;
+            }
+        }
+        return counter;
     }
 
     /**
@@ -28,7 +36,8 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        StringBuilder text = new StringBuilder(base.replace(remove,""));
+        return text.toString();
     }
 
     /**
@@ -39,8 +48,14 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("This is notnot") // Should return true
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
+
+    private int contains(String input, String word){
+        int starting_length = input.length();
+        int ending_length = input.replace(word,"").length();
+        return ((starting_length - ending_length) / word.length()); // How many instances of the word there where
+    }
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        return contains(input, "not") == contains(input, "is");
     }
 
     /**
@@ -51,7 +66,8 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        int gg = contains(input, "gg");
+        return (gg == (contains(input, "g")-gg));
     }
 
 
@@ -62,7 +78,14 @@ public class StringsAndThings {
      *            countTriple("xxxabyyyycd") // Should return 3
      *            countTriple("a") // Should return 0
      */
-    public Integer countTriple(String input){
-        return null;
+    public Integer countTriple(String input) {//Can't use contains() for this without calling it a LOT, not worth it
+        int count = 0; //What we will return
+        for (int i = 0; i < input.length()-2; i++) { // we count up to 2, don't want to go out of bounds
+            char c = input.charAt(i); //Save the char, then we can jump forward from that
+            if (c == input.charAt(i + 1) && c == input.charAt(i + 2)) {
+                count++;
+            }
+        }
+        return count;
     }
 }
