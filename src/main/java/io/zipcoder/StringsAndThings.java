@@ -1,5 +1,7 @@
 package io.zipcoder;
 
+import java.util.*;
+import org.codehaus.plexus.util.StringUtils;
 
 /**
  * @author tariq
@@ -15,7 +17,14 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        int count = 0;
+        int numWords = input.split("\\w+").length;
+        for(int i = 0; i<numWords; i++) {
+            if (input.endsWith("y") || input.endsWith("z")) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     /**
@@ -28,7 +37,9 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        String str = "";
+        str = str +base.replace(remove, "");
+        return str;
     }
 
     /**
@@ -40,7 +51,13 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int i = StringUtils.countMatches(input, "is");
+        int j = StringUtils.countMatches(input, "not");
+        if(i==j){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -51,7 +68,11 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        if(input.contains("gg")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
@@ -63,6 +84,14 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int count = 0;
+        int numInput = input.length();
+        for(int i = 1; i<=numInput - 2; i++){
+            char temporaryElmt = input.charAt(i);
+            if(temporaryElmt == input.charAt(i +1) && temporaryElmt == input.charAt(i+2)){
+                count += 1;
+            }
+        }
+        return count;
     }
 }
