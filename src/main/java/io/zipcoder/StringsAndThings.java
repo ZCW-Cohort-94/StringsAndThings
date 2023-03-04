@@ -1,6 +1,8 @@
 package io.zipcoder;
 
 
+import org.codehaus.plexus.util.StringUtils;
+
 /**
  * @author tariq
  */
@@ -11,11 +13,16 @@ public class StringsAndThings {
      * but not the 'y' in "yellow" (not case sensitive). We'll say that a y or z is at the end of a word if there is not an alphabetic
      * letter immediately following it. (Note: Character.isLetter(char) tests if a char is an alphabetic letter.)
      * example : countYZ("fez day"); // Should return 2
-     *           countYZ("day fez"); // Should return 2
-     *           countYZ("day fyyyz"); // Should return 2
+     * countYZ("day fez"); // Should return 2
+     * countYZ("day fyyyz"); // Should return 2
      */
-    public Integer countYZ(String input){
-        return null;
+    public Integer countYZ(String input) {
+        String newString = input + " "; //add space to last char so i can easily detect end of ALL words
+        String findY = "y "; //substring to detect words ending with y
+        String findZ = "z "; //substring to detect words ending with z
+        int totalFound = 0; //store total number of words found
+        totalFound = StringUtils.countMatches(newString, findY) + StringUtils.countMatches(newString, findZ); //sums results from findY and findZ to totalFound
+        return totalFound; //returns total positive matches
     }
 
     /**
@@ -28,7 +35,8 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        String newString = base.replace(remove, ""); //create a new string, assign value of base - remove
+        return newString;
     }
 
     /**
@@ -40,7 +48,11 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int totalFoundIs = 0; //store total times "is" is found in string
+        int totalFoundNot = 0; //store total times "not" is found in string
+        totalFoundIs = StringUtils.countMatches(input, "is");
+        totalFoundNot = StringUtils.countMatches(input, "not");
+        return totalFoundIs == totalFoundNot;
     }
 
     /**
@@ -51,8 +63,21 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
-    }
+        int sL = input.length();
+        int yes = 0;
+        int no = 0;
+        for(int i = 0; i < sL; i++){
+            if(input.charAt(i) == 'g'){
+                if((input.charAt(i - 1) == 'g') || (input.charAt(i + 1) == 'g')){
+                    yes++;
+                }
+                else {
+                    return false;
+                }
+            }
+        } //for loop
+        return true;
+    } //gIsHappyMethod
 
 
     /**
@@ -63,6 +88,18 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
+        int sL = input.length();
+        int matches = 0;
+
+        for(int i = 0; i <sL; i++){
+            if(input.charAt(i) == input.charAt(i -1) && input.charAt(i) == input.charAt(i +1)){
+                matches++;
+            }
+
+        }
+
+
+
         return null;
-    }
+    } //countTriple method
 }
