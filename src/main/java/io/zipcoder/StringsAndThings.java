@@ -53,8 +53,9 @@ public class StringsAndThings {
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
 
+        return input.split("is", -1).length ==  input.split("not", -1).length;
 
-    return null; }
+   }
 
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
@@ -65,7 +66,7 @@ public class StringsAndThings {
      */
     public Boolean gIsHappy(String input){
 
-        return null;
+        return input.contains("gg");
     }
 
 
@@ -78,6 +79,15 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int sum = 0;
+        int length = input.length();
+
+        for(int i = 0; i < length - 2; i++) {
+            char trip = input.charAt(i);
+            if(trip == input.charAt(i + 1) && trip == input.charAt(i + 2)) {
+                sum++;
+            }
+        }
+        return sum;
     }
 }
