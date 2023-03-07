@@ -1,6 +1,8 @@
 package io.zipcoder;
 
 
+import java.sql.SQLOutput;
+
 /**
  * @author tariq
  */
@@ -14,9 +16,19 @@ public class StringsAndThings {
      *           countYZ("day fez"); // Should return 2
      *           countYZ("day fyyyz"); // Should return 2
      */
-    public Integer countYZ(String input){
-        return null;
+
+    public Integer countYZ(String input) {
+        int sum = 0;
+        String [] words = input.split(" ");
+
+        for(int i = 0; i < words.length; i++) {
+            if(input.endsWith("y") || input.endsWith("z")) {
+                sum++;
+            }
+        }
+        return sum;
     }
+
 
     /**
      * Given two strings, base and remove, return a version of the base string where all instances of the remove string have
@@ -28,7 +40,7 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        return base.replace(remove, "");
     }
 
     /**
@@ -40,8 +52,10 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
-    }
+
+        return input.split("is", -1).length ==  input.split("not", -1).length;
+
+   }
 
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
@@ -51,8 +65,10 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+
+        return input.contains("gg");
     }
+
 
 
     /**
@@ -63,6 +79,15 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int sum = 0;
+        int length = input.length();
+
+        for(int i = 0; i < length - 2; i++) {
+            char trip = input.charAt(i);
+            if(trip == input.charAt(i + 1) && trip == input.charAt(i + 2)) {
+                sum++;
+            }
+        }
+        return sum;
     }
 }
