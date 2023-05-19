@@ -17,7 +17,7 @@ public class StringsAndThings {
      */
     public Integer countYZ(String input){
         int counter = 0;
-        String[] list = input.split(" "); //Maybe change this out to a StringBuilder
+        String[] list = input.split(" "); //Decided not to use a string Builder, would be unnecessarily complex
         for (int i = 0;i < list.length;i++){
             if ((list[i].charAt(list[i].length()-1) == 'y') || ((list[i].charAt(list[i].length()-1) == 'z'))){
                 counter++;
